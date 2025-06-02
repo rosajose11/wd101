@@ -1,11 +1,7 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const userForm = document.getElementById("user_form");
-
-  // Load stored entries from localStorage or start with empty array
   let userEntries = JSON.parse(localStorage.getItem("user-entries")) || [];
 
-  // Helper to calculate age from DOB string (yyyy-mm-dd)
   function calculateAge(dobStr) {
     const today = new Date();
     const dob = new Date(dobStr);
@@ -17,75 +13,84 @@ document.addEventListener("DOMContentLoaded", () => {
     return age;
   }
 
-  function displayStoredUsers() {
-    const userList = document.getElementById("userList");
-    userList.innerHTML = ""; // Clear existing list
+  function displayEntries() {
+    const entries = JSON.parse(localStorage.getItem("user-entries")) || [];
+    const container = document.getElementById("user_details");
 
-    if (userEntries.length === 0) {
-      userList.innerHTML = "<li>No users stored yet.</li>";
+    if (entries.length === 0) {
+      container.innerHTML = "<p>No users stored yet.</p>";
       return;
     }
 
-    userEntries.forEach((user, index) => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <strong>User ${index + 1}:</strong> ${user.name}, Email: ${user.email}, DOB: ${user.dob}, Accepted Terms: ${
-        user.acceptedterms ? "Yes" : "No"
-      }
+    const tableRows = entries.map(entry => {
+      return `
+        <tr>
+          <td class="border px-4 py-2">${entry.name}</td>
+          <td class="border px-4 py-2">${entry.email}</td>
+          <td class="border px-4 py-2">${entry.password}</td>
+          <td class="border px-4 py-2">${entry.dob}</td>
+          <td class="border px-4 py-2">${entry.acceptedterms ? "Yes" : "No"}</td>
+        </tr>
       `;
-      userList.appendChild(li);
-    });
+    }).join("");
+
+    const table = `
+      <table class="table-auto w-full border border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border px-4 py-2">Name</th>
+            <th class="border px-4 py-2">Email</th>
+            <th class="border px-4 py-2">Password</th>
+            <th class="border px-4 py-2">DOB</th>
+            <th class="border px-4 py-2">Accepted Terms</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    `;
+
+    container.innerHTML = table;
   }
 
   const saveUserForm = (event) => {
     event.preventDefault();
 
-    // Clear any previous custom validation messages
     const dobInput = document.getElementById("dob");
-    dobInput.setCustomValidity("");
-
-    // Validate DOB age between 18 and 55
     const dobValue = dobInput.value;
     const age = calculateAge(dobValue);
 
+    dobInput.setCustomValidity("");
     if (age < 18 || age > 55) {
-      dobInput.setCustomValidity(
-        "Your age must be between 18 and 55 years to register."
-      );
+      dobInput.setCustomValidity("Your age must be between 18 and 55 years to register.");
       dobInput.reportValidity();
-      return; // Stop submission
+      return;
     }
 
     if (!userForm.checkValidity()) {
-      // If other validations fail, let browser show messages
       userForm.reportValidity();
       return;
     }
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const acceptedterms = document.getElementById("acceptterms").checked;
-
     const entry = {
-      name,
-      email,
-      password,
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
       dob: dobValue,
-      acceptedterms,
+      acceptedterms: document.getElementById("acceptterms").checked
     };
 
-    userEntries.push(entry); // push to loaded array
-    localStorage.setItem("user-entries", JSON.stringify(userEntries)); // save updated array
-
-    displayStoredUsers(); // update displayed list immediately
+    userEntries.push(entry);
+    localStorage.setItem("user-entries", JSON.stringify(userEntries));
 
     userForm.reset();
     alert("Form submitted successfully!");
+
+    displayEntries();
   };
 
-  // Display users on page load
-  displayStoredUsers();
-
   userForm.addEventListener("submit", saveUserForm);
+  displayEntries(); // show on page load
 });
+
