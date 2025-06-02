@@ -93,4 +93,3 @@ document.addEventListener("DOMContentLoaded", () => {
   userForm.addEventListener("submit", saveUserForm);
   displayEntries(); // show on page load
 });
-
