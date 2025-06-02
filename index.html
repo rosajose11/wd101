@@ -1,98 +1,133 @@
 
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-uquiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initital-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <title>Registration Form</title>
-        <style>
-            input#name:invalid:focus {
-                border:1px solid red;
-
-            }
-        </style>
-        <style>
-            input#email:invalid:focus {
-                border:1px solid red;
-
-            }
-        </style>
-
-    </head>
-    <body>
-
-    <div class="relative flex min-h-screen flex-col justify-centre overflow-hidden py-6 bg-gray-50">
-        <div 
-        class="relative bg-white px-6 pt-5 shadow -xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
-        <div class="mx-auto max-w-md">
-            <h2 class="text-3xl text-center font-bold leading-tight">
-                Registration Form 
-            </h2>
-            <div class="divide-y divide-gray-300/50">
-                <div class="space-y-6 py-8 text-base leading-7 text-gray-600">
-                    <form id="user_form">
-                        <label for="name" class="text-md w-40 inline-block font-medium leading-5 text-gray-700">
-                            Name 
-                        </label>
-                        <input required type="text" id="name" name="name"
-                            class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
-                            placeholder="Enter full name"></br>
-
-                        <label for="email" class="text-md w-40 inline-block font-medium leading-5 text-gray-700">
-                            Email
-                        </label>  
-                        <input required  type="email" id="email" name="email"
-                            class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
-                            placeholder="Enter Email"></br> 
-                            
-                        <label for="password" class="text-md w-40 inline-block font-medium leading-5 text-gray-700">
-                            Password
-                        </label>  
-                        <input required  type="password" id="password" name="password"
-                            class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
-                            placeholder="Enter password"></br> 
-                            
-                        <label for="dob" class="text-md w-40 inline-block font-medium leading-5 text-gray-700">
-                            Date of Birth
-                        </label>  
-                        <input required  type="date" id="dob" name="dob"
-                            class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500
-                            placeholder="Enter date of birth"></br>    
-                        <input required type="checkbox" id="acceptterms" name="acceptterms"
-                            class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Registration Form</title>
+    <style>
+        input#name:invalid:focus,
+        input#email:invalid:focus,
+        input#dob:invalid:focus {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 bg-gray-50">
+        <div
+            class="relative bg-white px-6 pt-5 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10"
+        >
+            <div class="mx-auto max-w-md">
+                <h2 class="text-3xl text-center font-bold leading-tight">Registration Form</h2>
+                <div class="divide-y divide-gray-300/50">
+                    <div class="space-y-6 py-8 text-base leading-7 text-gray-600">
+                        <form id="user_form" novalidate>
+                            <label
+                                for="name"
+                                class="text-md w-40 inline-block font-medium leading-5 text-gray-700"
+                                >Name</label
                             >
-                            <label for="acceptterms">Accept terms and comditions</label>
-                        <button type="submit" id="submit"   
-                        class="w-fit rounded-lg shadow-lg px-8 py-4 bg-green-500 text-white hover:bg-green-400 focus:outline-non">
-                        Submit 
-                    </button>
-                    </form>
+                            <input
+                                required
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
+                                placeholder="Enter full name"
+                            /><br />
+
+                            <label
+                                for="email"
+                                class="text-md w-40 inline-block font-medium leading-5 text-gray-700"
+                                >Email</label
+                            >
+                            <input
+                                required
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
+                                placeholder="Enter Email"
+                            /><br />
+
+                            <label
+                                for="password"
+                                class="text-md w-40 inline-block font-medium leading-5 text-gray-700"
+                                >Password</label
+                            >
+                            <input
+                                required
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
+                                placeholder="Enter password"
+                            /><br />
+
+                            <label
+                                for="dob"
+                                class="text-md w-40 inline-block font-medium leading-5 text-gray-700"
+                                >Date of Birth</label
+                            >
+                            <input
+                                required
+                                type="date"
+                                id="dob"
+                                name="dob"
+                                class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500"
+                                placeholder="Enter date of birth"
+                            /><br />
+
+                            <input
+                                required
+                                type="checkbox"
+                                id="acceptterms"
+                                name="acceptterms"
+                                class="inline-block rounded shadow px-4 py-3 mb-5 text-base leading-6"
+                            />
+                            <label for="acceptterms" class="text-gray-700"
+                                >Accept terms and conditions</label
+                            >
+                            <br />
+
+                            <button
+                                type="submit"
+                                id="submitBtn"
+                                class="w-fit rounded-lg shadow-lg px-8 py-4 bg-green-500 text-white hover:bg-green-400 focus:outline-none"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+    <div class="mx-auto max-w-md mt-8">
+  <h3 class="text-2xl font-semibold mb-4">Stored Users</h3>
+  <ul id="userList" class="list-disc list-inside text-gray-700"></ul>
+</div>
+
+
     <script>
-        const email=document.getElementById('email');
-        email.addEventListener('input',()=>validate(email));
-        const submit=document.getElementById('Submit');
-        submit.addEventListener('click',()=>validate(email));
-        
-        function validate(element){
-            if(element.validity.typeMismatch){
-                element.setCustomValidity("The Entry is not in the right format");
-                element.reportValidity();
+        document.addEventListener("DOMContentLoaded", () => {
+            const email = document.getElementById("email");
+            email.addEventListener("input", () => validateEmail(email));
 
+            function validateEmail(element) {
+                if (element.validity.typeMismatch) {
+                    element.setCustomValidity("The Entry is not in the right format");
+                    element.reportValidity();
+                } else {
+                    element.setCustomValidity("");
+                }
             }
-            else{
-                element.setCustomValidity('');
-            }
-        }
+        });
     </script>
-    </body>
-    
 
-    </html>
+    <script src="./index.js"></script>
+</body>
+</html>
