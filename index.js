@@ -1,3 +1,5 @@
+
+
 let userForm=document.getElementById('user_form');
 
 const retreiveUserEntries=()=>{
@@ -22,25 +24,38 @@ function isvaliddob(dob){
 }
 
 let userEntries=retreiveUserEntries();
+
 const displayUserEntries=()=>{
   const entries= retreiveUserEntries();
-  const TableEntries=entries.map((entry)=>{
-    const nameCell=`<td class='border px-4 py-2'>${entry.name}</td>`;
-    const emailCell=`<td class='border px-4 py-2'>${entry.email}</td>`;
-    const passwordCell=`<td class='border px-4 py-2'>${entry.password}</td>`;
-    const dobCell=`<td class='border px-4 py-2'>${entry.dob}</td>`;
-    const acceptedTermsAndConditionsCell=`<td class='border px-4 py-2'>${entry.acceptedTermsAndConditions}</td>`;
-    const row=`<tr>${nameCell}${emailCell}${passwordCell}${dobCell}${acceptedTermsAndConditionsCell}</tr>`;
-    return row;
+  let TableEntries="";
+  if(entries.length===0){
+    TableEntries=`<tr> 
+      <td class="border px-4 py-2" colspan="5"></td>
+    </tr>`;
+  }else{
+  TableEntries=entries.map((entry)=>{
+    return `<tr>
+      <td class="border px-4 py-2">${entry.name}</td>
+      <td class="border px-4 py-2">${entry.email}</td>
+      <td class="border px-4 py-2">${entry.password}</td>
+      <td class="border px-4 py-2">${entry.dob}</td>
+      <td class="border px-4 py-2">${entry.acceptedTermsAndConditions ? "Yes" : "No"}</td>
+    </tr>`;
   }).join("\n");
-  const table=`<table class='table-auto w-full'><tr>
+}
+  const table=`<table class='table-auto w-full'>
+  <thead class="bg-gray-100">
+  <tr>
   <th class="px-4 py-2">Name</th>
   <th class="px-4 py-2">Email</th>
   <th class="px-4 py-2">Password</th>
   <th class="px-4 py-2">Date of Birth</th>
   <th class="px-4 py-2">Accepted Terms and Conditions</th>
   </tr>
-  ${TableEntries}</table>`;
+  </thead>
+  <tbody>
+  ${TableEntries}
+  </tbody></table>`;
   let details=document.getElementById('user-entries');
   details.innerHTML=table;
 }
