@@ -1,4 +1,4 @@
-
+localStorage.removeItem("user-Entries");
 let userForm=document.getElementById('user_form');
 
 const retreiveUserEntries=()=>{
